@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css?family=Handlee');
+
+body {
+  background: #333;
+  color: white;
+}
+
+a {
+  color: rgb(130, 119, 119);
+  margin-left: 10px;
+}
+input {
+  margin-left: 10px;
+}
+h1 {
+  font-family: 'Handlee', cursive;
+}
