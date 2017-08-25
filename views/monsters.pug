@@ -1,0 +1,6 @@
+extends layout
+
+block content
+  for monster,i in monsters
+    li.name
+      a(href="/monsters/"+monster.id)  #{monster.name}
