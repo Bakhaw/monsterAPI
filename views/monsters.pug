@@ -1,6 +1,19 @@
 extends layout
 
 block content
-  for monster,i in monsters
-    li.name
-      a(href="/monsters/"+monster.id)  #{monster.name}
+  table.tableMonsters
+    tr
+    th Name
+    th Level
+    th Description
+    th
+      for monster,i in monsters
+        form(action="monsters" method="post")
+          tr
+          th
+            a(href="/monsters/"+monster.id)  #{monster.name}
+          th #{monster.level}
+          th #{monster.description}
+          th
+            input(type='submit', value='X', class="btn btn-light")
+            

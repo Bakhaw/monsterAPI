@@ -56,16 +56,34 @@ app.post("/create_monster", (req, res) => {
   //   level: parseInt(req.body.level, 10),
   //   description: req.body.description
   // });
+  let new_monster_name = req.body.name;
   let monster = new Monster(req.body);
   monster.save((err, monster) => {
     if (err) res.send("T'es mauvais!");
-    res.render("create_monster");
+    res.render("create_monster", { new_monster_name });
   });
 });
 
 app.get("/new_monster", (req, res) => {
   res.render("new_monster");
 });
+
+app.delete("/monsters/:id", (req, res) => {
+  let _id = req.params.id;
+  Monster.remove({ _id }, (err, monster) => {
+    if (err) res.send("Essaie encore!");
+    res.render("remove_monster");
+  });
+});
+
+app.post("/monsters", (req, res) => {
+  let monsterId = req.body.id || req.query.id;
+  Monster.remove({ _id: monsterId }, (err, res) => {
+    if (err) res.send("error");
+    res.render("remove_monster");
+  });
+});
+
 app.get("/monsters", (req, res) => {
   Monster.find({}, (err, monsters) => {
     if (err) res.send("Ceci est un message d'erreur, essaie encore");
